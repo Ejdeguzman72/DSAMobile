@@ -52,7 +52,7 @@ const EntertainmentLibraryScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                        {entertainmentVisible && entertainmentJsonData.map((entertainment, index) => (
+                        {entertainmentJsonData && entertainmentJsonData.map((entertainment, index) => (
                             <Text style={styles.blackText} key={index}>{entertainment.name}</Text>
                         ))}
                     </View>

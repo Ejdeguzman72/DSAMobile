@@ -52,7 +52,7 @@ const InventoryScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                        {inventoryVisible && inventoryJsonData.map((inventory, index) => (
+                        {inventoryJsonData && inventoryJsonData.map((inventory, index) => (
                             <Text style={styles.blackText} key={index}>{inventory.name}</Text>
                         ))}
                     </View>

@@ -53,7 +53,7 @@ const BookLibraryScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                        {booksVisible && booksJsonData.map((book, index) => (
+                        {booksJsonData && booksJsonData.map((book, index) => (
                             <Text style={styles.blackText} key={index}>{book.title}</Text>
                         ))}
                     </View>

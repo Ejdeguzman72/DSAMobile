@@ -31,7 +31,7 @@ const ContactInfoScreen = () => {
             if (data != null) {
                 const contactInfoCOntents = JSON.parse(data.Body.toString());
                 console.log(contactInfoCOntents)
-                setEntertainmentJsonData(entertainmentContents);
+                setContactInfoData(contactInfoCOntents);
             } else {
                 // setRecipeJsonData(jsonData);
             }
@@ -52,7 +52,7 @@ const ContactInfoScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                        {contactInfoVisible && contactInfoJsonData.map((contact, index) => (
+                        {contactInfoJsonData && contactInfoJsonData.map((contact, index) => (
                             <Text style={styles.blackText} key={index}>{`${contact.firstname} ${contact.lastname}`}</Text>
                         ))}
                     </View>

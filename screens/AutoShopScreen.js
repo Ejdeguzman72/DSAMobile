@@ -52,16 +52,13 @@ const AutoShopScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                        {autoshopsVisible && autoshopJsonData && (
+                    {autoshopsVisible && autoshopJsonData && (
                             <>
                                 {autoshopJsonData.map((autoshop, index) => (
                                     <AutoShopCard key={index} autoshop={autoshop} />
                                 ))}
                             </>
                         )}
-                        {autoshopJsonData && autoshopJsonData.map((autoshop, index) => (
-                            <Text style={styles.blackText} key={index}>{autoshop.autoShopName}</Text>
-                        ))}
                     </View>
                 </ImageBackground>
             </ScrollView>
