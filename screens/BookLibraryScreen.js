@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import BookCard from '../components/card/BookCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -30,9 +31,7 @@ const BookLibraryScreen = () => {
             const data = await s3.getObject(params).promise();
             if (data != null) {
                 const booksContents = JSON.parse(data.Body.toString());
-                console.log(booksContents)
                 setBooksJsonData(booksContents);
-                console.log('alkfjalkdfj' + booksJsonData)
             } else {
                 // setRecipeJsonData(jsonData);
             }
@@ -54,7 +53,7 @@ const BookLibraryScreen = () => {
                 >
                     <View style={styles.container}>
                         {booksJsonData && booksJsonData.map((book, index) => (
-                            <Text style={styles.blackText} key={index}>{book.title}</Text>
+                            <BookCard book={book} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

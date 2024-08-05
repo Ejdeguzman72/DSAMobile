@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import UtilityCard from '../components/card/UtilityCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -52,7 +53,7 @@ const UtilityReminderScreen = () => {
                 >
                     <View style={styles.container}>
                         {utilityJsonData && utilityJsonData.map((utility, index) => (
-                            <Text style={styles.blackText} key={index}>{utility.utilityName}</Text>
+                            <UtilityCard utility={utility} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

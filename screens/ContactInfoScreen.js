@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import ContactInfoCard from '../components/card/ContactInfoCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -30,7 +31,6 @@ const ContactInfoScreen = () => {
             const data = await s3.getObject(params).promise();
             if (data != null) {
                 const contactInfoCOntents = JSON.parse(data.Body.toString());
-                console.log(contactInfoCOntents)
                 setContactInfoData(contactInfoCOntents);
             } else {
                 // setRecipeJsonData(jsonData);
@@ -53,7 +53,7 @@ const ContactInfoScreen = () => {
                 >
                     <View style={styles.container}>
                         {contactInfoJsonData && contactInfoJsonData.map((contact, index) => (
-                            <Text style={styles.blackText} key={index}>{`${contact.firstname} ${contact.lastname}`}</Text>
+                            <ContactInfoCard contact={contact} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const MedicalOfficeCard = () => {
+const MedicalOfficeCard = ({ office }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
     return (
         <View>
-            {/* <TouchableHighlight onPress={openModal}>
+            <TouchableHighlight onPress={openModal}>
                 <Card containerStyle={styles.card}>
-                    <Card.Title style={styles.cardTitle}>{`${autoshop.autoShopName} - ${autoshop.address},${autoshop.city} ${autoshop.state} ${autoshop.zip}`}</Card.Title>
+                    <Card.Title style={styles.cardTitle}>{office.name}</Card.Title>
                 </Card>
             </TouchableHighlight>
 
@@ -20,20 +30,20 @@ const MedicalOfficeCard = () => {
             >
                 <View style={styles.modalContainer}>
                     <Card containerStyle={styles.modalCard}>
-                        <Card.Title>{`${autoshop.autoShopName}`}</Card.Title>
+                        <Card.Title>{`${office.name}`}</Card.Title>
+                        <Card.Divider></Card.Divider>
                         <ScrollView>
-                            <Card.Text>Address: {`${autoshop.address}`}</Card.Text>
-                            <Card.Text>City: {`${autoshop.city}`}</Card.Text>
-                            <Card.Text>State: {`${autoshop.state}`}</Card.Text>
-                            <Card.Text>Zip: {`${autoshop.zip}`}</Card.Text>
+                            <Text style={styles.modalText}>Address: {`${office.address}`}</Text>
+                            <Text style={styles.modalText}>City: {`${office.city}`}</Text>
+                            <Text style={styles.modalText}>State: {`${office.state}`}</Text>
+                            <Text style={styles.modalText}>Zip: {`${office.zip}`}</Text>
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
                         </ScrollView>
                     </Card>
                 </View>
-            </Modal> */}
-            <Text style={styles.blackText}>{`${office.medicalOfficeName}`}</Text>
+            </Modal>
         </View>
     );
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
-import AutoShopCard from '../components/card/AutoShopCard';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import MedicalOfficeCard from '../components/card/MedicalOfficeCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -53,7 +53,7 @@ const MedicalOfficeScreen = () => {
                 >
                     <View style={styles.container}>
                         {medicalOfficeJsonData && medicalOfficeJsonData.map((office, index) => (
-                            <Text style={styles.blackText} key={index}>{office.address}</Text>
+                            <MedicalOfficeCard office={office} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

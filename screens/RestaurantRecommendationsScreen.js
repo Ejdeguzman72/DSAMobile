@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import RestaurantCard from '../components/card/RestaurantCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -52,7 +53,7 @@ const RestaurantRecommendationsScreen = () => {
                 >
                     <View style={styles.container}>
                         {restaurantJsonData && restaurantJsonData.map((restaurant, index) => (
-                            <Text style={styles.blackText} key={index}>{restaurant.name}</Text>
+                            <RestaurantCard restaurant={restaurant} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

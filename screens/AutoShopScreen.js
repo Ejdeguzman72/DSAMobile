@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
+import { ScrollView, Text, View, TouchableHighlight, SafeAreaView, ImageBackground } from 'react-native';
+import { Card } from 'react-native-elements';
 import AutoShopCard from '../components/card/AutoShopCard';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
@@ -52,13 +53,9 @@ const AutoShopScreen = () => {
                     style={styles.background}
                 >
                     <View style={styles.container}>
-                    {autoshopsVisible && autoshopJsonData && (
-                            <>
-                                {autoshopJsonData.map((autoshop, index) => (
-                                    <AutoShopCard key={index} autoshop={autoshop} />
-                                ))}
-                            </>
-                        )}
+                        {autoshopJsonData && autoshopJsonData.map((autoshop, index) => (
+                            <AutoShopCard autoshop={autoshop} key={index} />
+                        ))}
                     </View>
                 </ImageBackground>
             </ScrollView>

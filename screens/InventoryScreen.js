@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import InventoryCard from '../components/card/InventoryCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -30,7 +31,6 @@ const InventoryScreen = () => {
             const data = await s3.getObject(params).promise();
             if (data != null) {
                 const inventoryContents = JSON.parse(data.Body.toString());
-                console.log(inventoryContents)
                 setInventoryJsonData(inventoryContents);
             } else {
                 // setRecipeJsonData(jsonData);
@@ -53,7 +53,7 @@ const InventoryScreen = () => {
                 >
                     <View style={styles.container}>
                         {inventoryJsonData && inventoryJsonData.map((inventory, index) => (
-                            <Text style={styles.blackText} key={index}>{inventory.name}</Text>
+                            <InventoryCard inventory={inventory} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

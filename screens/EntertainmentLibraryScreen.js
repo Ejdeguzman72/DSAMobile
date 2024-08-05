@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import EntertainmentCard from '../components/card/EntertainmentCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -30,7 +31,6 @@ const EntertainmentLibraryScreen = () => {
             const data = await s3.getObject(params).promise();
             if (data != null) {
                 const entertainmentContents = JSON.parse(data.Body.toString());
-                console.log(entertainmentContents)
                 setEntertainmentJsonData(entertainmentContents);
             } else {
                 // setRecipeJsonData(jsonData);
@@ -53,7 +53,7 @@ const EntertainmentLibraryScreen = () => {
                 >
                     <View style={styles.container}>
                         {entertainmentJsonData && entertainmentJsonData.map((entertainment, index) => (
-                            <Text style={styles.blackText} key={index}>{entertainment.name}</Text>
+                            <EntertainmentCard entertainment={entertainment} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

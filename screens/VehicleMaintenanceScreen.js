@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
 import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
+import VehicleCard from '../components/card/VehicleCard';
 
 AWS.config.update({
     accessKeyId: process.env.API_ACCESS_KEY,
@@ -52,7 +53,7 @@ const VehicleMaintenanceScreen = () => {
                 >
                     <View style={styles.container}>
                         {vehicleJsonData && vehicleJsonData.map((vehicle, index) => (
-                            <Text style={styles.blackText} key={index}>{`${vehicle.make} ${vehicle.model}`}</Text>
+                            <VehicleCard vehicle={vehicle} key={index} />
                         ))}
                     </View>
                 </ImageBackground>

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const InventoryCard = () => {
+const InventoryCard = ({ inventory }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+    
     return (
         <View>
-            {/* <TouchableHighlight onPress={openModal}>
+            <TouchableHighlight onPress={openModal}>
                 <Card containerStyle={styles.card}>
-                    <Card.Title style={styles.cardTitle}>{`${autoshop.autoShopName} - ${autoshop.address},${autoshop.city} ${autoshop.state} ${autoshop.zip}`}</Card.Title>
+                    <Card.Title style={styles.cardTitle}>{`${inventory.name}`}</Card.Title>
                 </Card>
             </TouchableHighlight>
 
@@ -20,20 +30,21 @@ const InventoryCard = () => {
             >
                 <View style={styles.modalContainer}>
                     <Card containerStyle={styles.modalCard}>
-                        <Card.Title>{`${autoshop.autoShopName}`}</Card.Title>
-                        <ScrollView>
-                            <Card.Text>Address: {`${autoshop.address}`}</Card.Text>
-                            <Card.Text>City: {`${autoshop.city}`}</Card.Text>
-                            <Card.Text>State: {`${autoshop.state}`}</Card.Text>
-                            <Card.Text>Zip: {`${autoshop.zip}`}</Card.Text>
+                        <Card.Title>{`${inventory.name}`}</Card.Title>
+                        <Card.Divider></Card.Divider>
+                        <View>
+                            <Text style={styles.modalText}>Condition: {`${inventory.condition}`}</Text>
+                            <Text style={styles.modalText}>Location: {`${inventory.location}`}</Text>
+                            <Text style={styles.modalText}>Q\
+                            uantity: {`${inventory.quantity}`}</Text>
+                            <Text style={styles.modalText}>Description: {`${inventory.description}`}</Text>
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
-                        </ScrollView>
+                        </View>
                     </Card>
                 </View>
-            </Modal> */}
-            <Text style={styles.blackText}>{`${inventory.name}`}</Text>
+            </Modal>
         </View>
     );
 

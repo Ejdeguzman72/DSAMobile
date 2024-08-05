@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const EntertainmentCard = () => {
+const EntertainmentCard = ({ entertainment }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
     return (
         <View>
-            {/* <TouchableHighlight onPress={openModal}>
+            <TouchableHighlight onPress={openModal}>
                 <Card containerStyle={styles.card}>
-                    <Card.Title style={styles.cardTitle}>{`${autoshop.autoShopName} - ${autoshop.address},${autoshop.city} ${autoshop.state} ${autoshop.zip}`}</Card.Title>
+                    <Card.Title style={styles.cardTitle}>{`${entertainment.name} - ${entertainment.descr}`}</Card.Title>
                 </Card>
             </TouchableHighlight>
 
@@ -20,20 +30,17 @@ const EntertainmentCard = () => {
             >
                 <View style={styles.modalContainer}>
                     <Card containerStyle={styles.modalCard}>
-                        <Card.Title>{`${autoshop.autoShopName}`}</Card.Title>
-                        <ScrollView>
-                            <Card.Text>Address: {`${autoshop.address}`}</Card.Text>
-                            <Card.Text>City: {`${autoshop.city}`}</Card.Text>
-                            <Card.Text>State: {`${autoshop.state}`}</Card.Text>
-                            <Card.Text>Zip: {`${autoshop.zip}`}</Card.Text>
+                        <Card.Title>{`${entertainment.name}`}</Card.Title>
+                        <Card.Divider></Card.Divider>
+                        <View>
+                            <Text style={styles.modalText}>Type: {`${entertainment.descr}`}</Text>
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
-                        </ScrollView>
+                        </View>
                     </Card>
                 </View>
-            </Modal> */}
-            <Text style={styles.blackText}>{`${entertainment.name}`}</Text>
+            </Modal>
         </View>
     );
 
