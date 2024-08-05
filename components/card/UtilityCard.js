@@ -3,7 +3,13 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const UtilityCard = ({ utility }) => {
+const UtilityCard = ({ utility = {
+    name: '',
+    phone: '',
+    url: '',
+    dueDate: '',
+    utilityTypeDescr: ''
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {

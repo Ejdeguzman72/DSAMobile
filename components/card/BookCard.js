@@ -3,7 +3,11 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book = {
+    title: '',
+    author: '',
+    descr: ''
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {

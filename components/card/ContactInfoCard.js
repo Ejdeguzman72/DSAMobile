@@ -3,7 +3,20 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const ContactInfoCard = ({ contact }) => {
+const ContactInfoCard = ({ contact = {
+    firstname: '',
+    middleInitial: '',
+    lastname: '',
+    address01: '',
+    address02: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    age: 0,
+    birthdate: '',
+    phone: '',
+    email: ''
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
@@ -37,6 +50,9 @@ const ContactInfoCard = ({ contact }) => {
                             <Text style={styles.modalText}>City: {contact.city}</Text>
                             <Text style={styles.modalText}>State: {contact.state}</Text>
                             <Text style={styles.modalText}>Zipcode: {contact.zipcode}</Text>
+                            <Text style={styles.modalText}>Phone: {contact.phone}</Text>
+                            <Text style={styles.modalText}>Email: {contact.email}</Text>
+                            <Text style={styles.modalText}>Birthdate: {contact.birthdate}</Text>
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>

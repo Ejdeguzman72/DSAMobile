@@ -3,7 +3,13 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const InventoryCard = ({ inventory }) => {
+const InventoryCard = ({ inventory = {
+    name: '',
+    condition: '',
+    location: '',
+    quantity: 0,
+    descr: ''
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
@@ -13,7 +19,7 @@ const InventoryCard = ({ inventory }) => {
     const closeModal = () => {
         setModalVisible(false);
     };
-    
+
     return (
         <View>
             <TouchableHighlight onPress={openModal}>

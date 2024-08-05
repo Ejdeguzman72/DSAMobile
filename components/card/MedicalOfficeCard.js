@@ -3,7 +3,13 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const MedicalOfficeCard = ({ office }) => {
+const MedicalOfficeCard = ({ office = {
+    name: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: ''
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
@@ -32,7 +38,7 @@ const MedicalOfficeCard = ({ office }) => {
                     <Card containerStyle={styles.modalCard}>
                         <Card.Title>{`${office.name}`}</Card.Title>
                         <Card.Divider></Card.Divider>
-                        <ScrollView>
+                        <View>
                             <Text style={styles.modalText}>Address: {`${office.address}`}</Text>
                             <Text style={styles.modalText}>City: {`${office.city}`}</Text>
                             <Text style={styles.modalText}>State: {`${office.state}`}</Text>
@@ -40,7 +46,7 @@ const MedicalOfficeCard = ({ office }) => {
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
-                        </ScrollView>
+                        </View>
                     </Card>
                 </View>
             </Modal>

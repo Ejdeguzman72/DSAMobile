@@ -3,7 +3,15 @@ import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'r
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
-const VehicleCard = ({ vehicle }) => {
+const VehicleCard = ({ vehicle = {
+    make: '',
+    model: '',
+    year: '',
+    capacity: 0,
+    transmission: '',
+    lastMaintenanceDate: '',
+    mileage: 0
+} }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
