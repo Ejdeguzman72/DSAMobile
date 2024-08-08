@@ -53,7 +53,12 @@ const BookLibraryScreen = () => {
                 >
                     <View style={styles.container}>
                         {booksJsonData && booksJsonData.map((book, index) => (
-                            <BookCard book={book} key={index} />
+                            <BookCard
+                                book={book}
+                                key={index}
+                                index={index}
+                                books={setBooksJsonData}
+                            />
                         ))}
                     </View>
                 </ImageBackground>

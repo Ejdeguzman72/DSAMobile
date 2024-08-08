@@ -2,23 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, TouchableHighlight, SafeAreaView, ImageBackground } from 'react-native';
 import { Card } from 'react-native-elements';
 import AutoShopCard from '../components/card/AutoShopCard';
-import AWS from 'aws-sdk'
 import styles from '../style/app-styles';
-
-AWS.config.update({
-    accessKeyId: process.env.API_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
-})
-
-const s3 = new AWS.S3();
+import uploadJsonToS3 from '../services/UploadJsonToS3';
+import s3 from '../config/aws-config';
 
 const AutoShopScreen = () => {
-    const handleButtonPress = () => {
-        setLandingPageVisible(false);
-        setAutoshopsVisible(true);
-    };
-    //   const jsonData = recipeJson;
     const [autoshopJsonData, setAutoshopJsonData] = useState(null);
     const [landingPageVisible, setLandingPageVisible] = useState(true);
     const [autoshopsVisible, setAutoshopsVisible] = useState(false);
@@ -39,7 +27,7 @@ const AutoShopScreen = () => {
         } catch (error) {
             console.log(`Error fetching JSON data: `, error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchJsonData();
@@ -54,7 +42,13 @@ const AutoShopScreen = () => {
                 >
                     <View style={styles.container}>
                         {autoshopJsonData && autoshopJsonData.map((autoshop, index) => (
-                            <AutoShopCard autoshop={autoshop} key={index} />
+                            <AutoShopCard
+                                autoshop={autoshop}
+                                index={index}
+                                key={index}
+                                autoShops={autoshopJsonData}
+                                setAutoShops={setAutoshopJsonData}
+                            />
                         ))}
                     </View>
                 </ImageBackground>

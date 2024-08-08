@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
     color: 'blue',
     textAlign: 'center',
     marginTop: 10,
+    padding: 10
+  },
+  deleteButton: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 10,
+    padding: 10
   },
   highlight: {
     fontWeight: '700',
@@ -89,6 +96,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black'
   },
+  updateButton: {
+    color: 'green',
+    textAlign: 'center',
+    marginTop: 10,
+    padding: 10
+  }
 });
 
 export default styles;

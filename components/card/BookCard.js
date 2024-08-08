@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
 
@@ -7,7 +7,7 @@ const BookCard = ({ book = {
     title: '',
     author: '',
     descr: ''
-} }) => {
+}, index, books, setBooks }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
@@ -16,6 +16,14 @@ const BookCard = ({ book = {
 
     const closeModal = () => {
         setModalVisible(false);
+    };
+
+    const handleDelete = () => {
+        const newBooks = [...books];
+        newBooks.splice(index, 1);
+        setBooks(newBooks);
+        Alert.alert("Updated Books");
+        closeModal();
     };
 
     return (
@@ -43,6 +51,10 @@ const BookCard = ({ book = {
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
+                            {/* <TouchableHighlight>
+                                <Text style={styles.updateButton}>Update</Text>
+                            </TouchableHighlight>
+                            <DeleteAutoshopButton onDelete={handleDelete} /> */}
                         </View>
                     </Card>
                 </View>

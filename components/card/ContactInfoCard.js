@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableHighlight, ScrollView, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import styles from '../../style/app-styles';
+import DeleteButton from '../button/DeleteButton';
 
 const ContactInfoCard = ({ contact = {
     firstname: '',
@@ -16,7 +17,7 @@ const ContactInfoCard = ({ contact = {
     birthdate: '',
     phone: '',
     email: ''
-} }) => {
+}, index, contacts, setContacts }) => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const openModal = () => {
@@ -25,6 +26,14 @@ const ContactInfoCard = ({ contact = {
 
     const closeModal = () => {
         setModalVisible(false);
+    };
+
+    const handleDelete = () => {
+        const newContacts = [...contacts];
+        newContacts.splice(index, 1);
+        setContacts(newContacts);
+        Alert.alert("Updated Contact Info");
+        closeModal();
     };
 
     return (
@@ -56,6 +65,10 @@ const ContactInfoCard = ({ contact = {
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>
                             </TouchableHighlight>
+                            {/* <TouchableHighlight>
+                                <Text style={styles.updateButton}>Update</Text>
+                            </TouchableHighlight>
+                            <DeleteButton onDelete={handleDelete} /> */}
                         </View>
                     </Card>
                 </View>

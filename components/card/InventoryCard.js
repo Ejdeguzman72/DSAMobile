@@ -42,7 +42,7 @@ const InventoryCard = ({ inventory = {
                             <Text style={styles.modalText}>Condition: {`${inventory.condition}`}</Text>
                             <Text style={styles.modalText}>Location: {`${inventory.location}`}</Text>
                             <Text style={styles.modalText}>Q\
-                            uantity: {`${inventory.quantity}`}</Text>
+                                uantity: {`${inventory.quantity}`}</Text>
                             <Text style={styles.modalText}>Description: {`${inventory.description}`}</Text>
                             <TouchableHighlight onPress={closeModal}>
                                 <Text style={styles.closeButton}>Close</Text>

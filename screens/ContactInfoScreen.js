@@ -53,7 +53,12 @@ const ContactInfoScreen = () => {
                 >
                     <View style={styles.container}>
                         {contactInfoJsonData && contactInfoJsonData.map((contact, index) => (
-                            <ContactInfoCard contact={contact} key={index} />
+                            <ContactInfoCard 
+                                contact={contact} 
+                                key={index}
+                                index={index}
+                                contacts={contactInfoJsonData}
+                                setContacts={setContactInfoData} />
                         ))}
                     </View>
                 </ImageBackground>
