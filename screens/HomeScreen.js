@@ -27,7 +27,7 @@ function HomeScreen() {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <HomeSection title="DSA Mobile">
-            Welcome to <Text style={styles.highlight}>DSA Mobile!</Text> 
+            Welcome to <Text style={styles.highlight}>DSA Mobile! </Text> 
             Keep track of internal records on the go. Be able to check vehicle maintenance records, inventory, library, and favorite restaurants
           </HomeSection>
           <HomeSection title="Contents">
