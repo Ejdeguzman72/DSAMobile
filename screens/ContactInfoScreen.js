@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View, TouchableOpacity, SafeAreaView, ImageBackground } from 'react-native';
-import AWS from 'aws-sdk'
+import { ScrollView, View, SafeAreaView, ImageBackground } from 'react-native';
 import styles from '../style/app-styles';
 import ContactInfoCard from '../components/card/ContactInfoCard';
-
-AWS.config.update({
-    accessKeyId: process.env.API_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
-})
-
-const s3 = new AWS.S3();
+import {DSA_MOBILE_BUCKET_NAME,AWS_CONTACT_INFO_JSON_FILE} from '@env';
+import s3 from '../config/aws-config';
 
 const ContactInfoScreen = () => {
     const handleButtonPress = () => {
@@ -25,8 +18,8 @@ const ContactInfoScreen = () => {
     const fetchJsonData = async () => {
         try {
             const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: process.env.AWS_CONTACT_INFO_JSON_FILE
+                Bucket: DSA_MOBILE_BUCKET_NAME,
+                Key: AWS_CONTACT_INFO_JSON_FILE
             };
             const data = await s3.getObject(params).promise();
             if (data != null) {

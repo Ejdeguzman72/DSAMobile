@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View, TouchableHighlight, SafeAreaView, ImageBackground } from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView, View, SafeAreaView, ImageBackground } from 'react-native';
 import AutoShopCard from '../components/card/AutoShopCard';
 import styles from '../style/app-styles';
-import uploadJsonToS3 from '../services/UploadJsonToS3';
 import s3 from '../config/aws-config';
+import {DSA_MOBILE_BUCKET_NAME,AWS_AUTOSHOP_JSON_FILE} from '@env';
 
 const AutoShopScreen = () => {
     const [autoshopJsonData, setAutoshopJsonData] = useState(null);
@@ -14,8 +13,8 @@ const AutoShopScreen = () => {
     const fetchJsonData = async () => {
         try {
             const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: process.env.AWS_AUTOSHOP_JSON_FILE
+                Bucket: DSA_MOBILE_BUCKET_NAME,
+                Key: AWS_AUTOSHOP_JSON_FILE
             };
             const data = await s3.getObject(params).promise();
             if (data != null) {

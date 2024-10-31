@@ -1,7 +1,9 @@
+import { AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION } from '@env';
+
 AWS.config.update({
-    accessKeyId: process.env.API_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
+    accessKeyId: AWS_ACCESS_KEY,
+    secretAccessKey: AWS_SECRET_KEY,
+    region: AWS_REGION
 });
 
 const s3 = new AWS.S3();
